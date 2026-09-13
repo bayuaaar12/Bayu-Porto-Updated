@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" data-plot="paper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BAR-26 · Bayu Anugrah Ramadan — Drawing Set</title>
+  <meta name="description" content="Computer Science student at BINUS. Full-stack Laravel/React systems, computer-vision checkout, and hotel IT infrastructure. Seeking Software Engineer / Web Developer internship." />
+  <meta name="theme-color" content="#EDE6D4" />
+  <link rel="canonical" href="https://bayuaaar12.github.io/" />
+  <meta property="og:title" content="Bayu Anugrah Ramadan — Portfolio drawing set" />
+  <meta property="og:description" content="Full-stack web + computer vision + IT infrastructure. BINUS CS, GPA 3.37." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23EDE6D4' width='32' height='32'/%3E%3Crect fill='none' stroke='%231A2332' x='3' y='3' width='26' height='26'/%3E%3Ctext x='6' y='21' font-family='monospace' font-size='9' fill='%231A2332'%3EBAR%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!--
+    Type pairing (not Inter/Poppins):
+    - Big Shoulders Display: condensed industrial lettering used on drawing sheets and highway plates — the name becomes a graphic, not a “hero headline”.
+    - IBM Plex Sans: engineered humanist for long copy; pairs with Plex Mono used as title-block / coordinate annotation.
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #EDE6D4;
+      --paper-2: #E4DCC6;
+      --ink: #1A2332;
+      --ink-soft: rgba(26, 35, 50, 0.68);
+      --hair: rgba(26, 35, 50, 0.16);
+      --grid: rgba(42, 98, 122, 0.11);
+      --cyan: #2F6F88;
+      --amber: #C4781A;
+      --stamp: #9A3B2F;
+      --max: 1240px;
+      --gutter: clamp(16px, 3vw, 36px);
+      --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+      --sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    html[data-plot="night"] {
+      --paper: #0E1824;
+      --paper-2: #122030;
+      --ink: #D7E8F0;
+      --ink-soft: rgba(215, 232, 240, 0.7);
+      --hair: rgba(126, 196, 220, 0.22);
+      --grid: rgba(126, 196, 220, 0.08);
+      --cyan: #7EC4DC;
+      --amber: #E0A04A;
+      --stamp: #E07A6A;
+      color-scheme: dark;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      min-height: 100vh;
+      cursor: crosshair;
+    }
+
+    body::before {
+      content: "";
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, #000 40%, transparent 85%);
+    }
+
+    a { color: var(--cyan); text-underline-offset: 3px; }
+    a:hover { color: var(--amber); }
+    img { max-width: 100%; height: auto; }
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 8px;
+    }
+    .skip:focus { left: 8px; z-index: 80; background: var(--paper); padding: 8px; }
+
+    .sheet {
+      position: relative;
+      z-index: 1;
+      margin: 12px;
+      border: 1px solid var(--ink);
+      outline: 1px solid var(--hair);
+      outline-offset: 4px;
+      background: var(--paper);
+      min-height: calc(100vh - 24px);
+    }
+
+    .run {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 8px var(--gutter);
+      border-bottom: 1px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+    .run nav { display: flex; flex-wrap: wrap; gap: 14px; }
+    .run a { color: var(--ink); text-decoration: none; }
+    .run a:hover { color: var(--amber); }
+    .run-meta { display: flex; gap: 16px; color: var(--ink-soft); }
+    .plot-btn {
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      background: transparent;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      padding: 2px 8px;
+      cursor: pointer;
+    }
+    .plot-btn:hover { background: var(--ink); color: var(--paper); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.9fr);
+      min-height: calc(100vh - 120px);
+    }
+    .hero-main {
+      padding: clamp(24px, 4vw, 56px) var(--gutter);
+      border-right: 1px solid var(--hair);
+      position: relative;
+    }
+    .dwg-no {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--cyan);
+      letter-spacing: 0.14em;
+    }
+    h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(64px, 13vw, 168px);
+      line-height: 0.82;
+      letter-spacing: -0.03em;
+      margin: 12px 0 0;
+      text-transform: uppercase;
+    }
+    .lede {
+      max-width: 38rem;
+      margin-top: 28px;
+      font-size: 1.05rem;
+      color: var(--ink);
+    }
+    .lede strong { font-weight: 600; }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      text-decoration: none;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: transparent;
+    }
+    .btn-fill { background: var(--ink); color: var(--paper); }
+    .btn:hover { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+    .btn-fill:hover { background: var(--amber); color: var(--ink); }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+    }
+    .spec {
+      flex: 1;
+      padding: 20px var(--gutter);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+    .spec .row {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--hair);
+    }
+    .spec .row span:last-child { overflow-wrap: anywhere; }
+    .spec .k { color: var(--cyan); }
+    .titleblock {
+      border-top: 2px solid var(--ink);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .titleblock div {
+      padding: 10px 14px;
+      border-right: 1px solid var(--hair);
+      border-bottom: 1px solid var(--hair);
+    }
+    .titleblock div:nth-child(2n) { border-right: 0; }
+    .titleblock .wide { grid-column: 1 / -1; border-right: 0; }
+    .titleblock b { display: block; font-weight: 500; font-size: 13px; margin-top: 2px; font-family: var(--sans); overflow-wrap: anywhere; }
+
+    .stamp {
+      position: absolute;
+      right: 8%;
+      top: 18%;
+      border: 2px solid var(--stamp);
+      color: var(--stamp);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      transform: rotate(-12deg);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    section.plate {
+      border-top: 1px solid var(--ink);
+      padding: clamp(40px, 7vw, 88px) var(--gutter);
+    }
+    .plate-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 28px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+    .plate-head h2 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--ink);
+      line-height: 0.9;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+    }
+    .about-grid p { margin: 0 0 1em; color: var(--ink-soft); }
+    .about-grid p:first-child { color: var(--ink); font-size: 1.15rem; }
+    .sched {
+      border: 1px solid var(--ink);
+    }
+    .sched h3 {
+      margin: 0;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .sched article {
+      padding: 14px;
+      border-bottom: 1px solid var(--hair);
+    }
+    .sched article:last-child { border-bottom: 0; }
+    .sched .when { font-family: var(--mono); font-size: 11px; color: var(--amber); }
+    .sched h4 { margin: 4px 0 4px; font-size: 15px; }
+
+    .exp {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0 28px;
+      border-left: 1px solid var(--ink);
+      padding-left: 24px;
+    }
+    .exp .cut {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--cyan);
+      padding-top: 4px;
+    }
+    .exp h3 { margin: 0 0 8px; font-size: 22px; }
+    .exp p { margin: 0; color: var(--ink-soft); max-width: 62ch; }
+    .metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 22px;
+    }
+    .metrics b {
+      display: block;
+      font-family: var(--display);
+      font-size: 42px;
+      line-height: 1;
+    }
+    .metrics span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+
+    .project {
+      border: 1px solid var(--ink);
+      margin-bottom: 28px;
+      display: grid;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .project:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 6px 6px 0 var(--amber);
+    }
+    .project.a { grid-template-columns: 1.1fr 0.9fr; }
+    .project.b { grid-template-columns: 0.85fr 1.15fr; }
+    .project.c, .project.d { grid-template-columns: 1fr; }
+    .proj-copy, .proj-fig { padding: 24px; }
+    .proj-fig {
+      background: var(--paper-2);
+      border-left: 1px solid var(--hair);
+      min-height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .project.b .proj-fig { border-left: 0; border-right: 1px solid var(--hair); order: -1; }
+    .proj-id {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--amber);
+    }
+    .project h3 {
+      font-family: var(--display);
+      font-size: clamp(28px, 4vw, 44px);
+      margin: 6px 0 12px;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+    .story { display: grid; gap: 12px; }
+    .story dt {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+    .story dd { margin: 0; color: var(--ink-soft); }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .chips span {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      border: 1px solid var(--hair);
+      padding: 3px 8px;
+    }
+    .proj-links { margin-top: 16px; display: flex; gap: 16px; font-family: var(--mono); font-size: 12px; }
+
+    .project.c .inner, .project.d .inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .project.c .inner .proj-fig, .project.d .inner .proj-fig {
+      border-left: 1px solid var(--hair);
+    }
+
+    .bom {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .bom th, .bom td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--hair);
+      vertical-align: top;
+    }
+    .bom th {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 500;
+    }
+    .bom .cat { font-family: var(--mono); font-size: 11px; color: var(--amber); width: 140px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+    .contact-grid h3 {
+      font-family: var(--display);
+      font-size: clamp(36px, 6vw, 64px);
+      margin: 0 0 12px;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+    .contact-list {
+      font-family: var(--mono);
+      font-size: 13px;
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+    }
+    .contact-list li {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--hair);
+    }
+
+    .cursor-read {
+      position: fixed;
+      z-index: 50;
+      pointer-events: none;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--amber);
+      mix-blend-mode: multiply;
+      transform: translate(12px, 12px);
+    }
+
+    .sheet-foot {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px var(--gutter);
+      border-top: 1px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    svg.diagram { width: min(100%, 420px); height: auto; }
+
+    @media (max-width: 880px) {
+      body { cursor: auto; }
+      .cursor-read { display: none; }
+      .hero, .about-grid, .contact-grid, .project.a, .project.b,
+      .project.c .inner, .project.d .inner, .exp {
+        grid-template-columns: 1fr;
+      }
+      .hero-main { border-right: 0; border-bottom: 1px solid var(--hair); }
+      .project.b .proj-fig { order: 0; border-right: 0; border-bottom: 1px solid var(--hair); }
+      .project.c .inner .proj-fig, .project.d .inner .proj-fig { border-left: 0; border-top: 1px solid var(--hair); }
+      h1 { font-size: clamp(48px, 18vw, 96px); }
+      .stamp { display: none; }
+      .run-meta span:nth-child(2) { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+
+    @media print {
+      body::before, .run nav, .plot-btn, .cursor-read, .hero-actions { display: none !important; }
+      .sheet { margin: 0; outline: 0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#about">Skip to content</a>
+  <div class="cursor-read" id="xy" hidden>X 000 · Y 000</div>
+
+  <div class="sheet">
+    <header class="run">
+      <nav aria-label="Sheets">
+        <a href="#about">01 About</a>
+        <a href="#experience">02 Field</a>
+        <a href="#projects">03 Projects</a>
+        <a href="#skills">04 Skills</a>
+        <a href="#contact">05 Transmittal</a>
+      </nav>
+      <div class="run-meta">
+        <span id="clock">--:--</span>
+        <span class="coord">Malang</span>
+        <button class="plot-btn" type="button" id="plotToggle" aria-pressed="false">Night plot</button>
+      </div>
+    </header>
+
+    <section class="hero" aria-label="Title sheet">
+      <div class="hero-main">
+        <p class="dwg-no">DWG BAR-26 · SHEET 00 · PORTFOLIO SET · SCALE 1:1</p>
+        <h1>Bayu<br />Anugrah<br />Ramadan</h1>
+        <p class="lede">
+          CS student at <strong>BINUS University</strong> (GPA 3.37 / 4.00). I build the Laravel and React surfaces that cashiers actually click — and the Python vision pipeline that identifies a member before the keypad comes out. I also spent a year on the other side of the wall: wireless APs, structured cabling, and 99.9% uptime at a hotel.
+        </p>
+        <p class="lede" style="margin-top:12px;color:var(--ink-soft)">
+          Looking for a Software Engineer / Web Developer internship. I can talk indexes and I can talk access points.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-fill" href="#projects">Open project plates</a>
+          <a class="btn" href="mailto:bayuanugrahramadan@gmail.com">bayuanugrahramadan@gmail.com</a>
+        </div>
+        <div class="stamp">Issued for review</div>
+      </div>
+      <aside class="hero-side">
+        <div class="spec">
+          <div class="row"><span class="k">Role</span><span>Full-stack web · software engineering</span></div>
+          <div class="row"><span class="k">Seeking</span><span>Internship · SE / Web Developer</span></div>
+          <div class="row"><span class="k">Stack</span><span>Laravel, React, PHP, Python, MySQL</span></div>
+          <div class="row"><span class="k">Also</span><span>OpenCV · ORB · DeepFace · Ruijie · cabling</span></div>
+          <div class="row"><span class="k">School</span><span>B.Sc. Computer Science, BINUS · 2022–2026</span></div>
+          <div class="row"><span class="k">Based</span><span>Malang, East Java, Indonesia</span></div>
+        </div>
+        <div class="titleblock" aria-label="Title block">
+          <div>Drawn by<b>B. A. Ramadan</b></div>
+          <div>Checked<b>Self / BINUS studio</b></div>
+          <div>Date issued<b>2026.09</b></div>
+          <div>Revision<b>A — paper plot</b></div>
+          <div class="wide">Project title<b>Integrated systems: POS, biometrics, hotel network</b></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="plate" id="about">
+      <div class="plate-head">
+        <span>Sheet 01 / 05</span>
+        <h2>About</h2>
+        <span>Notes</span>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>Most student portfolios stop at the CRUD app. Mine starts at the counter: a warung that needed members recognised without fumbling for a phone number, a POS that was drowning in unindexed queries, a hotel that needed airtime in 100+ zones — not another landing page.</p>
+          <p>At BINUS I write full-stack web (Laravel, React, PHP, Python) and I treat the database as part of the product: query plans, indexes, payload shape. The face-recognition checkout is a hybrid on purpose — Haar Cascade to find a face, ORB when lighting is ugly, Facenet512 when we need an embedding we can trust — then a Laravel REST endpoint that accepts a base64 frame. Checkout time dropped about 40%.</p>
+          <p>The year at The Alana Hotel and Conference Center is not a side note. Configuring Ruijie APs, pulling structured cable for a building expansion, and chasing bottlenecks that cut downtime ~25% is how I learned that “the app is slow” is sometimes a switch, not a <code>SELECT *</code>.</p>
+          <p>I was in GDSC Indonesia and BNCC because I like rooms where people actually ship. I am looking for a team that will put me on real tickets — backend, frontend, or the ugly glue in between.</p>
+        </div>
+        <div class="sched">
+          <h3>Revision schedule — education &amp; orgs</h3>
+          <article>
+            <div class="when">2022 – 2026</div>
+            <h4>B.Sc. Computer Science · BINUS University</h4>
+            <p>GPA 3.37 / 4.00. Focus: software engineering, databases, system integration.</p>
+          </article>
+          <article>
+            <div class="when">2019 – 2022</div>
+            <h4>SMA Islam Sabilillah Malang · Boarding School</h4>
+            <p>Final score 87.00. Discipline first, then code.</p>
+          </article>
+          <article>
+            <div class="when">Nov 2023 – 2024</div>
+            <h4>Google Developer Student Clubs Indonesia</h4>
+            <p>Member. Community workshops, not spectator mode.</p>
+          </article>
+          <article>
+            <div class="when">Aug 2023 – 2024</div>
+            <h4>Bina Nusantara Computer Club (BNCC)</h4>
+            <p>Member. Campus software community.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="plate" id="experience">
+      <div class="plate-head">
+        <span>Sheet 02 / 05</span>
+        <h2>Field notes</h2>
+        <span>Elevation</span>
+      </div>
+      <div class="exp">
+        <div class="cut">02.2025<br />—<br />02.2026</div>
+        <div>
+          <p class="dwg-no" style="margin:0 0 6px">IT Infrastructure &amp; Support Intern</p>
+          <h3>The Alana Hotel and Conference Center</h3>
+          <p>Property-scale wireless, not lab-scale. I configured access points across 100+ zones, ran structured cabling for a building expansion, and sat in the middle of “guest Wi-Fi is down” tickets. Target was boring on purpose: <strong>99.9% uptime</strong>. Diagnosing bottlenecks — noisy air, bad runs, overloaded links — cut downtime by about a quarter. That year is why I still open the network diagram before I blame the framework.</p>
+          <div class="metrics">
+            <div><b>100+</b><span>AP zones</span></div>
+            <div><b>99.9%</b><span>Uptime target held</span></div>
+            <div><b>−25%</b><span>Downtime after bottleneck work</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="plate" id="projects">
+      <div class="plate-head">
+        <span>Sheet 03 / 05</span>
+        <h2>Project plates</h2>
+        <span>Issue A</span>
+      </div>
+
+      <article class="project a" id="p-face">
+        <div class="proj-copy">
+          <p class="proj-id">PLATE 03.A · WARUNG PINGKAL</p>
+          <h3>Smart Face Recognition POS &amp; Member System</h3>
+          <dl class="story">
+            <dt>Problem</dt>
+            <dd>At a culinary MSME, member discounts died at the cashier: staff typed a phone number, guests waited, the queue grew. A loyalty program that adds friction is not a loyalty program.</dd>
+            <dt>Decision</dt>
+            <dd>Do not bet on one detector. Haar Cascade locates a face in the frame; ORB covers messy lighting with classical features; DeepFace (Facenet512) supplies embeddings when we need a match we can store. Laravel exposes a REST endpoint for base64 image payloads so the Python pipeline never has to own the POS UI. MySQL keeps member records next to tickets — one checkout, not two systems taped together.</dd>
+            <dt>Result</dt>
+            <dd>Checkout time down ~40%. The cashier looks up, not down. Source for the dual-method pipeline is archived with the Laravel POS (no face images in the public dump).</dd>
+          </dl>
+          <div class="chips">
+            <span>Python</span><span>OpenCV</span><span>NumPy</span><span>ORB</span><span>DeepFace</span><span>Facenet512</span><span>Laravel API</span><span>MySQL</span>
+          </div>
+          <p class="proj-links">
+            <a href="https://github.com/bayuaaar12/facerecog">github.com/bayuaaar12/facerecog</a>
+            <a href="https://doi.org/10.5281/zenodo.20697182">DOI archive</a>
+          </p>
+        </div>
+        <figure class="proj-fig">
+          <svg class="diagram" viewBox="0 0 420 280" role="img" aria-label="Hybrid recognition pipeline diagram" fill="none" stroke="currentColor">
+            <rect x="8" y="8" width="404" height="264" stroke-opacity=".35"/>
+            <text x="20" y="32" fill="currentColor" stroke="none" font-family="IBM Plex Mono,monospace" font-size="11">PIPELINE — HYBRID MATCH</text>
+            <rect x="24" y="52" width="110" height="48"/>
+            <text x="36" y="80" fill="currentColor" stroke="none" font-size="12" font-family="IBM Plex Sans,sans-serif">Frame b64</text>
+            <path d="M134 76h40"/>
+            <rect x="174" y="52" width="110" height="48"/>
+            <text x="186" y="80" fill="currentColor" stroke="none" font-size="12" font-family="IBM Plex Sans,sans-serif">Haar ROI</text>
+            <path d="M284 76h40"/>
+            <rect x="324" y="52" width="72" height="48"/>
+            <text x="334" y="80" fill="currentColor" stroke="none" font-size="12" font-family="IBM Plex Sans,sans-serif">POS</text>
+            <rect x="24" y="140" width="160" height="56"/>
+            <text x="36" y="174" fill="currentColor" stroke="none" font-size="12" font-family="IBM Plex Sans,sans-serif">ORB · ugly light</text>
+            <rect x="220" y="140" width="176" height="56"/>
+            <text x="232" y="174" fill="currentColor" stroke="none" font-size="12" font-family="IBM Plex Sans,sans-serif">Facenet512 embed</text>
+            <path d="M229 100v40M104 100v40"/>
+            <text x="20" y="236" fill="currentColor" stroke="none" font-size="11" font-family="IBM Plex Mono,monospace">Δ t checkout ≈ −40%</text>
+            <circle cx="372" cy="236" r="18" stroke="#C4781A"/>
+          </svg>
+        </figure>
+      </article>
+
+      <article class="project b" id="p-pos">
+        <figure class="proj-fig">
+          <svg class="diagram" viewBox="0 0 420 260" role="img" aria-label="POS data flow" fill="none" stroke="currentColor">
+            <rect x="8" y="8" width="404" height="244" stroke-opacity=".35"/>
+            <text x="20" y="32" fill="currentColor" stroke="none" font-family="IBM Plex Mono,monospace" font-size="11">INDEX PLAN — POS READ PATH</text>
+            <rect x="40" y="60" width="340" height="36"/>
+            <text x="52" y="83" fill="currentColor" stroke="none" font-size="13" font-family="IBM Plex Sans,sans-serif">tickets · indexed (created_at, member_id)</text>
+            <rect x="40" y="112" width="340" height="36"/>
+            <text x="52" y="135" fill="currentColor" stroke="none" font-size="13" font-family="IBM Plex Sans,sans-serif">inventory · qty live, no table scan on SKU</text>
+            <rect x="40" y="164" width="340" height="36"/>
+            <text x="52" y="187" fill="currentColor" stroke="none" font-size="13" font-family="IBM Plex Sans,sans-serif">customer rollup · pre-agg instead of N+1</text>
+            <text x="20" y="234" fill="currentColor" stroke="none" font-size="11" font-family="IBM Plex Mono,monospace">retrieval / txn speed ≈ +35%</text>
+          </svg>
+        </figure>
+        <div class="proj-copy">
+          <p class="proj-id">PLATE 03.B · ENTERPRISE COUNTER</p>
+          <h3>Enterprise Point-of-Sale Web Platform</h3>
+          <dl class="story">
+            <dt>Problem</dt>
+            <dd>A full-featured web POS is easy to demo and hard to keep honest at noon rush: stock lies, sales reports hitch, the next ticket waits on a query that should have been an index.</dd>
+            <dt>Decision</dt>
+            <dd>PHP/Laravel as the system of record. Real-time inventory and sales tracking on MySQL, with query plans and indexes treated as product work — not a later “optimisation sprint”. JavaScript on the counter UI stays thin; the database does the heavy lifting.</dd>
+            <dt>Result</dt>
+            <dd>Transaction speed and data retrieval up ~35% after indexing and query cleanup. Cashiers get the next SKU without watching a spinner.</dd>
+          </dl>
+          <div class="chips">
+            <span>PHP</span><span>Laravel</span><span>MySQL</span><span>JavaScript</span>
+          </div>
+          <p class="proj-links">
+            <a href="https://github.com/bayuaaar12/kasirpingkal">github.com/bayuaaar12/kasirpingkal</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="project c" id="p-invest">
+        <div class="inner">
+          <div class="proj-copy">
+            <p class="proj-id">PLATE 03.C · FINTECH</p>
+            <h3>Investkan — Crowdfunding</h3>
+            <dl class="story">
+              <dt>Problem</dt>
+              <dd>Retail investors in Indonesia do not lack enthusiasm; they lack a single, readable door into deals across F&amp;B and technology. Spreadsheets and WhatsApp groups do not scale.</dd>
+              <dt>Decision</dt>
+              <dd>A Laravel/PHP application with MySQL as the book of record: listings, sectors, and investment flow in one place. JavaScript only where the listing UI needs to filter without a full reload. Trust is copy and schema — campaign fields, not a gradient.</dd>
+              <dt>Result</dt>
+              <dd>A working crowdfunding surface for discovering and placing funds across sectors. (Live URL still to be attached.)</dd>
+            </dl>
+            <div class="chips"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>JavaScript</span></div>
+          </div>
+          <figure class="proj-fig">
+            <svg class="diagram" viewBox="0 0 360 240" role="img" aria-label="Sector map" fill="none" stroke="currentColor">
+              <rect x="8" y="8" width="344" height="224" stroke-opacity=".35"/>
+              <text x="20" y="32" fill="currentColor" stroke="none" font-family="IBM Plex Mono,monospace" font-size="11">SECTOR KEY</text>
+              <circle cx="90" cy="120" r="48"/>
+              <text x="68" y="124" fill="currentColor" stroke="none" font-size="13" font-family="IBM Plex Sans,sans-serif">F&amp;B</text>
+              <circle cx="220" cy="120" r="70"/>
+              <text x="186" y="124" fill="currentColor" stroke="none" font-size="13" font-family="IBM Plex Sans,sans-serif">Technology</text>
+              <path d="M138 120h12"/>
+            </svg>
+          </figure>
+        </div>
+      </article>
+
+      <article class="project d" id="p-menu">
+        <div class="inner">
+          <div class="proj-copy">
+            <p class="proj-id">PLATE 03.D · FRONT OF HOUSE</p>
+            <h3>Interactive Restaurant Menu</h3>
+            <dl class="story">
+              <dt>Problem</dt>
+              <dd>Printed menus go stale the week the kitchen changes a price. Guests still filter by “under 50k” and “bukan pedas” with a finger on paper.</dd>
+              <dt>Decision</dt>
+              <dd>A React SPA: category and price filters as first-class state, dishes from a REST API so the kitchen can change a plate without a rebuild. Responsive because the phone at the table is the real viewport.</dd>
+              <dt>Result</dt>
+              <dd>A menu that behaves like software — filter, fetch, sit down — instead of a PDF with rounded corners.</dd>
+            </dl>
+            <div class="chips"><span>React.js</span><span>REST API</span><span>SPA</span></div>
+          </div>
+          <figure class="proj-fig">
+            <svg class="diagram" viewBox="0 0 360 240" role="img" aria-label="Menu filter wire" fill="none" stroke="currentColor">
+              <rect x="8" y="8" width="344" height="224" stroke-opacity=".35"/>
+              <text x="20" y="32" fill="currentColor" stroke="none" font-family="IBM Plex Mono,monospace" font-size="11">FILTER BUS</text>
+              <rect x="24" y="52" width="80" height="28"/><text x="36" y="71" fill="currentColor" stroke="none" font-size="12" font-family="IBM Plex Sans,sans-serif">Makanan</text>
+              <rect x="114" y="52" width="80" height="28"/><text x="128" y="71" fill="currentColor" stroke="none" font-size="12" font-family="IBM Plex Sans,sans-serif">Minuman</text>
+              <rect x="204" y="52" width="80" height="28"/><text x="220" y="71" fill="currentColor" stroke="none" font-size="12" font-family="IBM Plex Sans,sans-serif">&lt; 50k</text>
+              <rect x="24" y="110" width="312" height="40"/>
+              <rect x="24" y="162" width="312" height="40"/>
+              <text x="36" y="135" fill="currentColor" stroke="none" font-size="12" font-family="IBM Plex Sans,sans-serif">GET /menu?cat=&amp;maxPrice=</text>
+            </svg>
+          </figure>
+        </div>
+      </article>
+    </section>
+
+    <section class="plate" id="skills">
+      <div class="plate-head">
+        <span>Sheet 04 / 05</span>
+        <h2>Bill of materials</h2>
+        <span>Tools</span>
+      </div>
+      <table class="bom">
+        <thead>
+          <tr><th>Group</th><th>Items</th><th>Where it showed up</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cat">Languages</td>
+            <td>JavaScript, PHP, Python, Java, Kotlin, HTML5, CSS3</td>
+            <td>POS UI, APIs, vision pipeline, Android-adjacent coursework</td>
+          </tr>
+          <tr>
+            <td class="cat">Frameworks</td>
+            <td>Laravel, React.js, OpenCV, NumPy, REST</td>
+            <td>Every plate in sheet 03</td>
+          </tr>
+          <tr>
+            <td class="cat">Data &amp; tools</td>
+            <td>MySQL, Git, GitHub, VS Code, Postman, Ruijie Networking</td>
+            <td>Indexing work; hotel wireless</td>
+          </tr>
+          <tr>
+            <td class="cat">Competence</td>
+            <td>Full-stack development, DB optimisation, system integration, IT support</td>
+            <td>Counter systems + property network</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="plate" id="contact">
+      <div class="plate-head">
+        <span>Sheet 05 / 05</span>
+        <h2>Transmittal</h2>
+        <span>Issue</span>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <h3>Send the brief.<br />I’ll bring the drawing set.</h3>
+          <p style="color:var(--ink-soft);max-width:46ch">Internship, take-home, or a 30-minute call about why Facenet512 sat next to ORB instead of replacing it. I read tickets. I answer email.</p>
+          <a class="btn btn-fill" href="mailto:bayuanugrahramadan@gmail.com?subject=Internship%20%2F%20BAR-26">Issue email</a>
+        </div>
+        <ul class="contact-list">
+          <li><span>Mail</span><a href="mailto:bayuanugrahramadan@gmail.com">bayuanugrahramadan@gmail.com</a></li>
+          <li><span>Phone</span><a href="tel:+6281392222761">0813-9222-2761</a></li>
+          <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/bayuanugrahramadan">linkedin.com/in/bayuanugrahramadan</a></li>
+          <li><span>GitHub</span><a href="https://github.com/bayuaaar12">github.com/bayuaaar12</a></li>
+          <li><span>Office</span><span>Malang, East Java, Indonesia</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="sheet-foot">
+      <span>BAR-26 · Do not scale drawing</span>
+      <span>© 2026 Bayu Anugrah Ramadan</span>
+      <span>Paper plot unless night plot is on</span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var clock = document.getElementById("clock");
+      function tick() {
+        var d = new Date();
+        clock.textContent = d.toTimeString().slice(0, 8) + " WIB";
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      var root = document.documentElement;
+      var btn = document.getElementById("plotToggle");
+      var saved = localStorage.getItem("bar-plot");
+      if (saved === "night") {
+        root.setAttribute("data-plot", "night");
+        btn.setAttribute("aria-pressed", "true");
+        btn.textContent = "Paper plot";
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#0E1824");
+      }
+      btn.addEventListener("click", function () {
+        var night = root.getAttribute("data-plot") !== "night";
+        root.setAttribute("data-plot", night ? "night" : "paper");
+        btn.setAttribute("aria-pressed", String(night));
+        btn.textContent = night ? "Paper plot" : "Night plot";
+        localStorage.setItem("bar-plot", night ? "night" : "paper");
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", night ? "#0E1824" : "#EDE6D4");
+      });
+
+      var xy = document.getElementById("xy");
+      var fine = window.matchMedia("(pointer: fine)").matches;
+      var motion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (fine && !motion) {
+        xy.hidden = false;
+        window.addEventListener("pointermove", function (e) {
+          xy.textContent = "X " + String(Math.round(e.clientX)).padStart(4, "0") + " · Y " + String(Math.round(e.clientY)).padStart(4, "0");
+          xy.style.left = e.clientX + "px";
+          xy.style.top = e.clientY + "px";
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
